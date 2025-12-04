@@ -21,17 +21,6 @@ const pushNotification = (title, description, type) => {
   textDescription.textContent = description;
   container.appendChild(textDescription);
 
-  if (type === 'success') {
-    container.classList.add('success');
-  }
-
-  if (type === 'error') {
-    container.classList.add('error');
-  }
-
-  if (type === 'warning') {
-    container.classList.add('warning');
-  }
   document.body.appendChild(container);
 
   setTimeout(() => {
@@ -235,7 +224,10 @@ tHead.addEventListener('click', (e) => {
         const aNewText = aText.slice(1).trim();
         const bNewText = bText.slice(1).trim();
 
-        return parseFloat(aNewText) - parseFloat(bNewText);
+        return (
+          parseFloat(aNewText.replace(/,/g, '')) -
+          parseFloat(bNewText.replace(/,/g, ''))
+        );
       }
 
       if (isNaN(aText) && isNaN(bText)) {
@@ -253,7 +245,10 @@ tHead.addEventListener('click', (e) => {
         const aNewText = aText.slice(1).trim();
         const bNewText = bText.slice(1).trim();
 
-        return parseFloat(bNewText) - parseFloat(aNewText);
+        return (
+          parseFloat(bNewText.replace(/,/g, '')) -
+          parseFloat(aNewText.replace(/,/g, ''))
+        );
       }
 
       if (isNaN(aText) && isNaN(bText)) {
